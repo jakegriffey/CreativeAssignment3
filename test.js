@@ -1,9 +1,11 @@
 var app = angular.module("app", []);
 
 app.controller("LanguageController", function($scope, $http){
+    $scope.videoSources = [];
+    $scope.languageArray = [];
+    
     $scope.getLanguages = function() {
         $http.get("https://restcountries.eu/rest/v2/all").then(function(response) {
-            console.log(response);
             let data = response.data;
             let languages = [];
             
@@ -17,16 +19,24 @@ app.controller("LanguageController", function($scope, $http){
             }
             
             $scope.languageArray = languages;
-            console.log($scope.languageArray);
         });
     };
     
     $scope.getVideos = function(language) {
+        $scope.videoSources = [];
+        
         var value = "learn+" + language + "+language";
-        var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + value + "&maxResults=10&order=rating&type=video&videoEmbeddable=true&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY"
+        var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + value + "&maxResults=10&order=rating&type=video&videoEmbeddable=true&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY";
         $http.get(url).then(function(response) {
-            console.log(response)
-        })
+            let items = response["data"]["items"];
+            let urlTemplate = "http://www.youtube.com/embed/";
+            
+            for(var i = 0; i < items.length; ++i) {
+                let youtubeSource = urlTemplate + items[i].id.videId
+                $scope.videoSources.push(youtubeSource);
+            }
+        });
     };
     
 });
+
