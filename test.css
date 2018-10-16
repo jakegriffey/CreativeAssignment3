@@ -1,4 +1,5 @@
 body {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/75/WorldMap-A_with_Frame.png");
     background-size: cover;
+    background-attachment: scroll;
 }
