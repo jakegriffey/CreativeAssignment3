@@ -4,12 +4,11 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
     <script type="text/javascript" src="test.js"></script>
+    <link rel="stylesheet" href="test.css" type="text/css" />
     <meta charset="utf-8">
     <title>Language Site Test</title>
 </head>
-<body ng-app = "app" ng-controller = "LanguageController">
-    <button ng-click = "getLanguages()">Test Me</button>
-    
+<body ng-app = "app" ng-controller = "LanguageController" ng-init = getLanguages()>
     <ul>
         <li ng-repeat = "language in languageArray | orderBy: '+'" style = "list-style: none; text-align: center;" ng-click = "getVideos(language)"> {{language}} </li>
     </ul>
