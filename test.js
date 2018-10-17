@@ -1,7 +1,8 @@
 var app = angular.module("app", []);
 
 app.controller("LanguageController", function($scope, $http){
-    $scope.videoSources = [];
+    $scope.firstVideoSources = [];
+    $scope.secondVideoSources = [];
     $scope.languageArray = [];
     
     $scope.getLanguages = function() {
@@ -22,8 +23,12 @@ app.controller("LanguageController", function($scope, $http){
         });
     };
     
-    $scope.getVideos = function(language) {
-        $scope.videoSources = [];
+    $scope.getVideos = function() {
+        let language = $scope.selectedLanguage;
+        let firstArray = [];
+        let secondArray = [];
+        
+        console.log("In get videos");
         
         var value = "learn+" + language + "+language";
         var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + value + "&maxResults=10&order=rating&type=video&videoEmbeddable=true&safeSearch=strict&key=AIzaSyBAg223tUmKQ9qctm6AzBFRtPsXfkZAPXY";
@@ -31,10 +36,21 @@ app.controller("LanguageController", function($scope, $http){
             let items = response["data"]["items"];
             let urlTemplate = "http://www.youtube.com/embed/";
             
-            for(var i = 0; i < items.length; ++i) {
-                let youtubeSource = urlTemplate + items[i].id.videId
-                $scope.videoSources.push(youtubeSource);
+            for(var i = 0; i < 4; ++i) {
+                let youtubeSource = items[i].id.videoId;
+                firstArray.push(youtubeSource);
             }
+            
+            for(var j = 4; j < items.length; ++j) {
+                let youtubeSource = items[i].id.videoId;
+                secondArray.push(youtubeSource);
+            }
+        
+            $scope.firstVideoSources= firstArray;
+            $scope.secondVideoSources = secondArray;
+            
+            console.log($scope.firstVideoSources);
+            console.log($scope.secondVideoSources);
         });
     };
     

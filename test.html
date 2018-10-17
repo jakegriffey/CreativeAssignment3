@@ -12,19 +12,28 @@
     <meta charset="utf-8">
     <title>Language Site Test</title>
 </head>
-<body ng-app = "app" ng-controller = "LanguageController" ng-init = getLanguages()>
+<body ng-app = "app" ng-controller = "LanguageController" ng-init = "getLanguages()">
     
     <div class="container center-block">
         <div class="row d-flex justify-content-center">
             <div class="text-center">
                 <label class="my-2" for="LanguageSelect">Pick a Language You Want to Learn!</label>
-                <select class="my-2 form-control input-lg" id="LanguageSelect">
+                <select class="my-2 form-control input-lg" id="LanguageSelect" ng-model = "selectedLanguage" ng-change = "getVideos()">
                     <!-- Add the list of languages -->
                     <option value="DEFAULT" selected>Pick A Language...</option>
-                    <option ng-repeat = "language in languageArray | orderBy: '+'" style = "list-style: none; text-align: center;" ng-click = "getVideos(language)">{{language}}</option>
+                    <option ng-repeat = "language in languageArray | orderBy: '+'" style = "list-style: none; text-align: center;">{{language}}</option>
                 </select>
             </div>
         </div>
+    </div>
+    
+    <div class = "container-fluid">
+        <table width = "100%">
+            <tr ng-repeat = "videoURL in firstVideoSources">
+                <td width = "50%"><iframe width = "640" height = "360" src = "http://www.youtube.com/embed/" + {{videoURL}}></iframe></td>
+                <td width = "50%"><iframe width = "640" height = "360" src = "http://www.youtube.com/embed/" + {{secondVideoSources[$index]}}</iframe></iframe></td>
+            </tr>
+        </table>
     </div>
 </body>
 
