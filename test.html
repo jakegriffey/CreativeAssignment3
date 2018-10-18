@@ -20,8 +20,8 @@
             <div class="text-center">
                 <label class="my-2" for="LanguageSelect">Pick a Language You Want to Learn!</label>
                 <select class="my-2 form-control input-lg" id="LanguageSelect" ng-model = "selectedLanguage" ng-change = "getVideos()">
-                    <!-- Add the list of languages -->
-                    <option value="DEFAULT" selected>Pick A Language...</option>
+                    <!-- Add the list of languages 
+                    <option value="DEFAULT" selected>Pick A Language...</option> -->
                     <option ng-repeat = "language in languageArray | orderBy: '+'" style = "list-style: none; text-align: center;">{{language}}</option>
                 </select>
             </div>
