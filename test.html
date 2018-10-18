@@ -11,14 +11,14 @@
     <script type="text/javascript" src="test.js"></script>
     <link rel="stylesheet" href="test.css" type="text/css" />
     <meta charset="utf-8">
-    <title>Language Site Test</title>
+    <title>Language Site</title>
 </head>
 <body ng-app = "app" ng-controller = "LanguageController" ng-init = "getLanguages()">
     
     <div class="container center-block">
         <div class="row d-flex justify-content-center">
             <div class="text-center">
-                <label class="my-2" for="LanguageSelect">Pick a Language You Want to Learn!</label>
+                <label class="my-2" for="LanguageSelect" id = "header">Pick a Language You Want to Learn!</label>
                 <select class="my-2 form-control input-lg" id="LanguageSelect" ng-model = "selectedLanguage" ng-change = "getVideos()">
                     <!-- Add the list of languages 
                     <option value="DEFAULT" selected>Pick A Language...</option> -->
