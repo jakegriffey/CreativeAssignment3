@@ -1,4 +1,4 @@
-var app = angular.module("app", []);
+var app = angular.module("app", ["ngYoutubeEmbed"]);
 
 app.controller("LanguageController", function($scope, $http){
     $scope.firstVideoSources = [];
@@ -36,13 +36,13 @@ app.controller("LanguageController", function($scope, $http){
             let items = response["data"]["items"];
             let urlTemplate = "http://www.youtube.com/embed/";
             
-            for(var i = 0; i < 4; ++i) {
-                let youtubeSource = items[i].id.videoId;
+            for(var i = 0; i < 5; ++i) {
+                let youtubeSource = urlTemplate + items[i].id.videoId;
                 firstArray.push(youtubeSource);
             }
             
-            for(var j = 4; j < items.length; ++j) {
-                let youtubeSource = items[i].id.videoId;
+            for(var j = 5; j < items.length; ++j) {
+                let youtubeSource = urlTemplate + items[j].id.videoId;
                 secondArray.push(youtubeSource);
             }
         
